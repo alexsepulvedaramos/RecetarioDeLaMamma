@@ -62,6 +62,5 @@ export class FirestoreService {
     } else {
       throw new Error('No se ha encontrado la receta solicitada');
     }
-
   }
 }
