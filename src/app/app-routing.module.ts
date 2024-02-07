@@ -1,12 +1,37 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddRecipeComponent } from './pages/add-recipe/add-recipe.component';
-import { RecipeListComponent } from './pages/recipe-list/recipe-list.component';
+
+import { PublicGuard } from './auth/guards/public.guard';
+import { AuthGuard } from './auth/guards/auth.guard';
+
+import { Error404PageComponent } from './shared/pages/error404-page/error404-page.component';
 
 const routes: Routes = [
-  { path: 'addRecipe', component: AddRecipeComponent },
-  { path: 'recipeList', component: RecipeListComponent },
-  { path: '**', redirectTo: 'recipeList' }
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+    // canActivate: [PublicGuard],
+    // canMatch: [PublicGuard]
+  },
+  {
+    path: 'recipes',
+    loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule),
+    // canActivate: [AuthGuard],
+    // canMatch: [AuthGuard]
+  },
+  {
+    path: '404',
+    component: Error404PageComponent,
+  },
+  {
+    path: '',
+    redirectTo: 'recipes',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '404',
+  }
 ];
 
 @NgModule({

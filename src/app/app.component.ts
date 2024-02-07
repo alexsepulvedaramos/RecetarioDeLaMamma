@@ -1,9 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FirebaseApp, initializeApp } from "firebase/app";
-import { Analytics, getAnalytics } from "firebase/analytics";
-import { Firestore, getFirestore, DocumentData, collection, getDocs } from "firebase/firestore";
-import { FirestoreService } from './services/firestore.service';
-import { Recipe } from './interfaces/recipe';
+import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from './recipes/services/firestore.service';
+import { Recipe } from './recipes/interfaces/recipe';
 
 @Component({
   selector: 'app-root',
@@ -18,17 +15,24 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const data: Recipe[] = await this.firestoreService.getAllRecipes();
+    let data: Recipe[] = [];
+    this.firestoreService.getAllRecipes().subscribe(recipes => {
+      data = recipes;
+      console.table(recipes);
+    });
 
-    if (data.length > 0) {
-      console.log((await this.firestoreService.addRecipe(data[0])).id);
-      console.log((await this.firestoreService.getRecipeById(data[0].id)))
-    }
 
-    setTimeout(() => {
-      data.forEach(recipe => {
-        this.firestoreService.deleteRecipe(recipe.id);
-      });
-    }, 10000);
+    // if (data.length > 0) {
+    //   data[0].pasos.push('Dorar la cebolla durante unos 10 minutos.');
+    //   console.log((await this.firestoreService.updateRecipe(data[0].id, data[0])))
+    //   console.log((await this.firestoreService.addRecipe(data[0])).id);
+    //   console.log((await this.firestoreService.getRecipeById(data[0].id)))
+    // }
+
+    // setTimeout(() => {
+    //   data.forEach(recipe => {
+    //     this.firestoreService.deleteRecipe(recipe.id);
+    //   });
+    // }, 10000);
   }
 }
