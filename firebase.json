@@ -1,7 +1,13 @@
 {
   "hosting": {
     "site": "recetasdelamama",
-    "public": "public"
+    "public": "public",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   },
   "firestore": {
     "rules": "firestore.rules",
