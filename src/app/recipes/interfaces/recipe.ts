@@ -1,33 +1,35 @@
-import { DocumentData, DocumentSnapshot, FirestoreDataConverter, QueryDocumentSnapshot } from "firebase/firestore";
+import { DocumentData, FirestoreDataConverter, QueryDocumentSnapshot } from "firebase/firestore";
 
 export interface Recipe {
   id: string;
-  pasos: string[];
-  nombre: string;
-  ingredientes: Ingrediente[];
-  imagenes: string[];
+  images?: string[];
+  ingredients: Ingredient[];
+  instructions: string[];
+  minutes: number;
+  name: string;
 }
 
-export interface Ingrediente {
-  unidad: string;
-  cantidad: number;
-  nombre: string;
-  icono: string;
+export interface Ingredient {
+  unit: string;
+  amount: number;
+  name: string;
+  icon?: string;
 }
 
 // Firestore data converter
 export const recipeConverter: FirestoreDataConverter<Recipe> = {
   toFirestore: (recipe: Recipe) => {
     return {
-      pasos: recipe.pasos,
-      nombre: recipe.nombre,
-      ingredientes: recipe.ingredientes.map((ingrediente) => ({
-        unidad: ingrediente.unidad,
-        cantidad: ingrediente.cantidad,
-        nombre: ingrediente.nombre,
-        icono: ingrediente.icono,
+      images: recipe.images,
+      ingredients: recipe.ingredients.map((ingredient) => ({
+        unit: ingredient.unit,
+        amount: ingredient.amount,
+        name: ingredient.name,
+        icon: ingredient.icon ? ingredient.icon : '',
       })),
-      imagenes: recipe.imagenes,
+      instructions: recipe.instructions,
+      minutes: recipe.minutes,
+      name: recipe.name,
     };
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<DocumentData, DocumentData>): Recipe => {
@@ -35,15 +37,16 @@ export const recipeConverter: FirestoreDataConverter<Recipe> = {
 
     return {
       id: snapshot.id,
-      pasos: data['pasos'],
-      nombre: data['nombre'],
-      ingredientes: data['ingredientes'].map((ingrediente: Ingrediente) => ({
-        unidad: ingrediente.unidad,
-        cantidad: ingrediente.cantidad,
-        nombre: ingrediente.nombre,
-        icono: ingrediente.icono,
+      images: data['images'],
+      ingredients: data['ingredients'].map((ingredient: Ingredient) => ({
+        unit: ingredient.unit,
+        amount: ingredient.amount,
+        name: ingredient.name,
+        icon: ingredient.icon,
       })),
-      imagenes: data['imagenes'],
+      instructions: data['instructions'],
+      minutes: data['minutes'],
+      name: data['name'],
     };
   }
 };

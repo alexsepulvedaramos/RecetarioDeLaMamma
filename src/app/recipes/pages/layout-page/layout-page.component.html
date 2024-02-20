@@ -1,39 +1,61 @@
-<!-- <mat-sidenav-container fullscreen>
+<p-sidebar #sidebarRef [(visible)]="sidebarVisible">
+  <ng-template pTemplate="headless">
+    <div class="flex flex-column h-full">
+      <div class="flex align-items-center justify-content-between pl-4 pt-3 flex-shrink-0">
+        <span class="inline-flex align-items-center gap-3">
+          <p-image src="../../../../assets/app-icon-white.png" alt="Mum's Recipes icon" width="30"></p-image>
+          <span class="font-semibold text-3xl text-primary">Mum's Recipes</span>
+          <p-button type="button" (click)="closeCallback($event)" icon="pi pi-times"></p-button>
+        </span>
+      </div>
 
-  <mat-sidenav #sidenav mode="push" [ngStyle]="{ width: '250px' }">
-    <mat-toolbar>
-      <span>Menú</span>
-      <span class="spacer"></span>
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </mat-toolbar>
+      <div class="overflow-y-auto">
+        <ul class="list-none p-3 m-0">
+          @for(item of sidebarItems; track item.label) {
+          <li [routerLink]="item.url" (click)="closeCallback($event)">
+            <a pRipple
+              class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+              <i [class]="item.icon"></i>
+              <span class="font-medium">{{item.label}}</span>
+            </a>
+          </li>
+          }
+        </ul>
+      </div>
 
-    <mat-nav-list>
-      <mat-list-item *ngFor="let item of sidebarItems" [routerLink]="item.url" (click)="sidenav.toggle()">
-        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-        {{ item.label }}
-      </mat-list-item>
-    </mat-nav-list>
+      <div class="mt-auto">
+        <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
+        <a pRipple
+          class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+          <p-avatar size="large"
+            image="https://media.licdn.com/dms/image/D4D03AQGtph3VhlHfPQ/profile-displayphoto-shrink_200_200/0/1708007553474?e=1714003200&v=beta&t=8H7i3OKJej5VDqSTODiTcOIY_HM65zXEb5F65MylvNE"
+            shape="circle" />
+          <span class="font-bold">Alejandro Sepúlveda</span>
+        </a>
+      </div>
+    </div>
+  </ng-template>
+</p-sidebar>
 
-  </mat-sidenav>
+<p-toolbar>
+  <div class="p-toolbar-group-start ml-1">
+    <p-button (click)="sidebarVisible = true" icon="pi pi-bars"></p-button>
+  </div>
 
-  <mat-toolbar color="primary">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
+  <div class="p-toolbar-group-center" [routerLink]="['/recipes/list']">
+    <p-image class="mx-2" src="../../../../assets/app-icon-white.png" alt="Mum's Recipes icon" width="30"></p-image>
+    <span class="font-semibold text-4xl text-primary">Mum's Recipes</span>
+  </div>
 
-    <span class="spacer"></span>
+  <div class="p-toolbar-group-end mr-1">
+    <a pRipple
+      class="flex align-items-center cursor-pointer gap-2 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+      <p-avatar size="large"
+        image="https://media.licdn.com/dms/image/D4D03AQGtph3VhlHfPQ/profile-displayphoto-shrink_200_200/0/1708007553474?e=1714003200&v=beta&t=8H7i3OKJej5VDqSTODiTcOIY_HM65zXEb5F65MylvNE"
+        shape="circle" />
+      <span class="font-bold">Alejandro Sepúlveda</span>
+    </a>
+  </div>
+</p-toolbar>
 
-    <span>{{ user?.email }}</span>
-
-    <button mat-button (click)="onLogout()">
-      Logout
-    </button>
-  </mat-toolbar>
-
-  <div class="container p-2"> -->
-    <router-outlet></router-outlet>
-  <!-- </div>
-
-</mat-sidenav-container> -->
+<router-outlet></router-outlet>

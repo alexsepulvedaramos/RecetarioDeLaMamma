@@ -1,34 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../../auth/services/auth.service';
-import { User } from '../../../auth/interfaces/user.interface';
+import { Sidebar } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-layout-page',
   templateUrl: './layout-page.component.html',
-  styles: ``
+  styleUrl: './layout-page.component.scss'
 })
 export class LayoutPageComponent {
 
-  // public sidebarItems = [
-  //   { label: 'Listado', icon: 'label', url: './list' },
-  //   { label: 'Añadir', icon: 'add', url: './new-hero' },
-  //   { label: 'Buscar', icon: 'search', url: './search' },
-  // ];
+  @ViewChild('sidebarRef') sidebarRef!: Sidebar;
+
+  closeCallback(e: Event): void {
+    this.sidebarRef.close(e);
+  }
+
+  sidebarVisible: boolean = false;
+
+  public sidebarItems = [
+    { label: 'Search recipes', icon: 'pi pi-search mr-3', url: './list' },
+    { label: 'New recipe', icon: 'pi pi-plus mr-3', url: './add-recipe' }
+  ];
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
-
-  // get user(): User | undefined {
-  //   return this.authService.currentUser
-  // }
-
-  // onLogout() {
-  //   this.authService.logout();
-  //   this.router.navigate(['/auth/login'])
-  // }
-
 }

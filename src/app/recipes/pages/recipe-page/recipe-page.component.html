@@ -1,0 +1,74 @@
+<div class="main-content">
+  @if(recipe) {
+  <div class="container">
+    <div class="recipe-image" [ngStyle]="{'background-image': 'url(' + this.recipe.images + ')'}">
+    </div>
+
+    <span class="recipe-title">{{ recipe.name }}</span>
+
+    <div id="recipe-info" class="grid">
+      <div class="col-6 lg:col-2">
+        <div class="border-card">
+          <i class="light-text pi pi-clock mr-2"></i>
+          <span>{{ recipe.minutes | minutesToHours }}</span>
+        </div>
+      </div>
+      <div class="col-6 lg:col-2">
+        <div class="border-card">
+          <i class="light-text pi pi-users mr-2"></i>
+          <span>4</span>
+        </div>
+      </div>
+      <div class="col-12 lg:col-8">
+        <div class="border-card">
+          <span class="light-text">By </span>
+          <span class="mx-2">Alejandro Sepúlveda</span>
+          <p-avatar
+            image="https://media.licdn.com/dms/image/D4D03AQGtph3VhlHfPQ/profile-displayphoto-shrink_200_200/0/1708007553474?e=1714003200&v=beta&t=8H7i3OKJej5VDqSTODiTcOIY_HM65zXEb5F65MylvNE"
+            shape="circle" />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <span class="title2">Ingredientes</span>
+      <div class="grid grid-nogutter mt-3">
+        @for(ingredient of recipe.ingredients; track ingredient;) {
+        <div class="col-12 grid grid-nogutter border-card my-1">
+          <div class="col-1 food-icon">
+            <img [src]="ingredient.icon ? ingredient.icon : './../../../../assets/app-icon-white.png'">
+          </div>
+          <div class="col-7 pl-2">
+            {{ ingredient.name }}
+          </div>
+          <div class="col-4 text-right">
+            {{ ingredient.amount }} {{ ingredient.unit }}
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="mt-5">
+      <span class="title2">Instrucciones</span>
+      <div class="my-4">
+        @for(instruction of recipe.instructions; track instruction; let i = $index;) {
+        <div class="my-3 mx-2 grid grid-nogutter">
+          <span class="col-2 lg:col-1 bold-text flex align-items-center lg:justify-content-center"> {{ i + 1 + '. ' }}</span>
+          <span class="col-10 lg:col-11 flex align-items-center">
+            {{ instruction }}
+          </span>
+        </div>
+
+        <hr class="border-50">
+        }
+      </div>
+    </div>
+  </div>
+  }
+  @else {
+  <ng-template #divLoading>
+    <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+  </ng-template>
+  }
+</div>

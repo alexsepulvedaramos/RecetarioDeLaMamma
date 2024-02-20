@@ -1,6 +1,7 @@
 # General knowledge
 
 ## To deploy at Firebase Hosting
+Run `ng build`.
 Run `firebase deploy --only hosting:recetasdelamama`.
 
 # Recetario

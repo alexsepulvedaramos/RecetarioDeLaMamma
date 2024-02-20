@@ -1,0 +1,76 @@
+:host::ng-deep {
+
+  .container.ng-star-inserted {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 28%;
+    margin-right: 28%;
+
+    >* {
+      width: 100%;
+    }
+  }
+
+  .recipe-image {
+    height: 500px;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  #recipe-info {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .card {
+    height: 100%;
+    padding: 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-wrap: nowrap;
+    overflow: hidden;
+  }
+
+  .food-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    > img {
+      height: 30px;
+    }
+  }
+
+  .border-line {
+  }
+
+  @media only screen and (max-width: 768px) {
+    .container.ng-star-inserted {
+      margin: 0%;
+
+      >* {
+        width: 100%;
+      }
+    }
+
+    .recipe-image {
+      margin-top: 0rem;
+      height: 240px;
+    }
+  }
+}

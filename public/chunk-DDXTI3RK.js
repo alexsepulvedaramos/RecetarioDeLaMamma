@@ -1,0 +1,1 @@
+import{h as r}from"./chunk-274D6EXY.js";var n=(()=>{let t=class t{};t.\u0275fac=function(e){return new(e||t)},t.\u0275prov=r({token:t,factory:t.\u0275fac,providedIn:"root"});let o=t;return o})();export{n as a};
