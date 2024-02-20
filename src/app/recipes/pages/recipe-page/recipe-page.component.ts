@@ -13,7 +13,7 @@ export class RecipePageComponent implements OnInit {
 
   public recipe?: Recipe;
 
-  responsiveOptions: any[] | undefined;
+  imageIndex: number = 0;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,20 +37,27 @@ export class RecipePageComponent implements OnInit {
             }
           });
       });
+  }
 
-    this.responsiveOptions = [
-      {
-        breakpoint: '1024px',
-        numVisible: 5
-      },
-      {
-        breakpoint: '768px',
-        numVisible: 3
-      },
-      {
-        breakpoint: '560px',
-        numVisible: 1
+  getCurrentImage(): string {
+    if (this.recipe && this.recipe.images && this.recipe.images.length > 0) {
+      if (this.recipe.images[this.imageIndex]) {
+        return this.recipe.images[this.imageIndex];
       }
-    ];
+    }
+
+    return '';
+  }
+
+  prevImage() {
+    if (this.recipe?.images) {
+      this.imageIndex = (this.imageIndex - 1 + this.recipe.images.length) % this.recipe.images.length;
+    }
+  }
+
+  nextImage() {
+    if (this.recipe?.images) {
+      this.imageIndex = (this.imageIndex + 1) % this.recipe.images.length;
+    }
   }
 }

@@ -1,8 +1,10 @@
 <div [routerLink]="['/recipes', recipe.id]" class="recipe-box"
-  [ngStyle]="{'background-image': 'url(' + this.recipe.images + ')'}">
+  [ngStyle]="{'background-image': 'url(' + getRecipeImg() + ')'}">
   <div class="gradient-overlay grid grid-nogutter">
-    <span id="recipe-title" class="col-8 lg:col-9">{{this.recipe.name}}</span>
-    <span id="recipe-time" class="col-3 lg:col-2"><i class="pi pi-clock mr-2"></i>{{this.recipe.minutes |
-      minutesToHours}}</span>
+    <span id="recipe-title" class="col-8">{{this.recipe.name}}</span>
+    <span id="recipe-time" class="col-3">
+      <i class="pi pi-clock mr-2"></i>
+      {{this.recipe.minutes | minutesToHours}}
+    </span>
   </div>
 </div>

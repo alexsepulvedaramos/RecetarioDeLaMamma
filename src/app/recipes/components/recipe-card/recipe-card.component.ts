@@ -12,4 +12,14 @@ export class RecipeCardComponent implements OnInit {
   ngOnInit(): void {
     if (!this.recipe) throw Error('Recipe property is required!');
   }
+
+  getRecipeImg(): string {
+    if (this.recipe && this.recipe.images && this.recipe.images.length > 0) {
+      if (this.recipe.images[0]) {
+        return this.recipe.images[0];
+      }
+    }
+
+    return '';
+  }
 }

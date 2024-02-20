@@ -1,8 +1,16 @@
 <div class="main-content">
   @if(recipe) {
   <div class="container">
-    <div class="recipe-image" [ngStyle]="{'background-image': 'url(' + this.recipe.images + ')'}">
+
+    @if (recipe.images && recipe.images.length > 0 ) {
+    <div class="recipe-image" [ngStyle]="{'background-image': 'url(' + getCurrentImage() + ')'}">
+
+      @if (recipe.images && recipe.images.length > 1 ) {
+        <button class="button left-button" (click)="prevImage()"><i class="pi pi-chevron-left"></i></button>
+        <button class="button right-button" (click)="nextImage()"><i class="pi pi-chevron-right"></i></button>
+      }
     </div>
+    }
 
     <span class="recipe-title">{{ recipe.name }}</span>
 
@@ -38,10 +46,10 @@
           <div class="col-1 food-icon">
             <img [src]="ingredient.icon ? ingredient.icon : './../../../../assets/app-icon-white.png'">
           </div>
-          <div class="col-7 pl-2">
+          <div class="col-6 pl-2">
             {{ ingredient.name }}
           </div>
-          <div class="col-4 text-right">
+          <div class="col-5 pr-2 text-right">
             {{ ingredient.amount }} {{ ingredient.unit }}
           </div>
         </div>
@@ -54,14 +62,16 @@
       <div class="my-4">
         @for(instruction of recipe.instructions; track instruction; let i = $index;) {
         <div class="my-3 mx-2 grid grid-nogutter">
-          <span class="col-2 lg:col-1 bold-text flex align-items-center lg:justify-content-center"> {{ i + 1 + '. ' }}</span>
+          <span class="col-2 lg:col-1 bold-text flex align-items-center lg:justify-content-center"> {{ i + 1 + '. '
+            }}</span>
           <span class="col-10 lg:col-11 flex align-items-center">
             {{ instruction }}
           </span>
         </div>
 
-        <hr class="border-50">
-        }
+        @if (i < recipe.instructions.length - 1) { <hr class="border-50">
+          }
+          }
       </div>
     </div>
   </div>
