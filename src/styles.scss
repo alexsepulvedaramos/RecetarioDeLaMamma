@@ -45,16 +45,16 @@ body {
 
   .recipe-title {
     font-size: 2.1rem;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .title2 {
     font-size: 1.7rem;
-    font-weight: 300;
+    font-weight: 400;
   }
 
   .light-text {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.9rem;
   }
 }
@@ -75,15 +75,14 @@ body {
   justify-content: center;
   align-items: center;
   border: 1px solid #ccc;
-  border-radius: 30px;
+  border-radius: 25px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-wrap: nowrap;
   overflow: hidden;
 }
 
 // PrimeNG mods -------------------------------------------------------------------
 .p-autocomplete-panel {
-  border-radius: 30px;
+  border-radius: 25px;
 }
 
 p-avatar.p-element {
@@ -100,7 +99,7 @@ p-avatar.p-element {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary-color);
-  border-radius: 30px;
+  border-radius: 25px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

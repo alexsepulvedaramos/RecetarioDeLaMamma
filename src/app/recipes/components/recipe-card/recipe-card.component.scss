@@ -2,7 +2,7 @@
 
   .recipe-box {
     border: 1px solid #ccc;
-    border-radius: 30px;
+    border-radius: 15px;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
     background-size: cover;
     background-repeat: no-repeat;
@@ -11,19 +11,19 @@
   }
 
   .gradient-overlay {
-    border-radius: 30px;
+    border-radius: 15px;
     content: '';
     position: relative;
-    top: 50%;
+    top: 30%;
     left: 0;
     width: 100%;
-    height: 50%;
+    height: 70%;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000000d2);
     z-index: 1;
   }
 
   .recipe-box:hover {
-    background-size: calc(100% + 3%);
+    filter: contrast(0.9) brightness(1.2) saturate(1.1);
   }
 
   #recipe-title {
@@ -33,7 +33,7 @@
     margin: 0;
     padding: 0;
     color: whitesmoke;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 400;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -49,11 +49,11 @@
     margin: 0;
     padding: 0;
     color: whitesmoke;
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: right;
 
     .pi {
-      font-size: 1.7rem;
+      font-size: 1.3rem;
     }
   }
 
