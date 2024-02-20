@@ -3,6 +3,7 @@
 # Compiled output
 /dist
 /public
+/firebase
 /tmp
 /out-tsc
 /bazel-out
