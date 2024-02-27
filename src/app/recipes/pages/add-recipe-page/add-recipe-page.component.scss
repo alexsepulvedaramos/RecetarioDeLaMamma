@@ -1,0 +1,85 @@
+:host::ng-deep {
+
+  .container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 28%;
+    margin-right: 28%;
+
+    >* {
+      width: 100%;
+    }
+  }
+
+  .recipe-image {
+    height: 500px;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+  }
+
+  #recipe-info {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .input-container {
+    width: 100%;
+
+    >* {
+      width: 100%;
+    }
+  }
+
+  .p-input-icon-right>input {
+    padding-right: 2rem;
+  }
+
+  .biggest-button button {
+    width: 40%;
+    margin: 1rem;
+    border: 2px solid var(--primary-900);
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 500;
+
+    >.pi {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    .container {
+      margin: 0%;
+
+      >* {
+        width: 100%;
+      }
+    }
+
+    .recipe-image {
+      margin-top: 0rem;
+      height: 240px;
+    }
+
+    .biggest-button button {
+      width: 80%;
+      font-size: 1.4rem;
+
+      >.pi {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}

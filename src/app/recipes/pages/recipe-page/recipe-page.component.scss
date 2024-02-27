@@ -12,24 +12,7 @@
     }
   }
 
-  .recipe-image {
-    height: 500px;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-between;
-  }
-
   #recipe-info {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
     justify-content: space-evenly;
     width: 100%;
   }
@@ -41,30 +24,8 @@
     padding: 0;
 
     >img {
-      height: 30px;
+      height: 28px;
     }
-  }
-
-  .button {
-    height: 50px;
-    width: 50px;
-    margin: 1%;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: transparent;
-
-    > .pi {
-      color: white;
-      font-size: 1.5rem;
-    }
-  }
-
-  .button:hover {
-    background-color: #f59f0b50;
-    border: 1px solid #f59f0b50;
-    border-radius: 15px;
   }
 
   @media only screen and (max-width: 768px) {

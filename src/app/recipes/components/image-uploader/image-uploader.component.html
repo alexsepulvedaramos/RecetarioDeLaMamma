@@ -1,0 +1,22 @@
+@if (webcamImage || uploadedImage) {
+<div>
+  <app-image-carrousel [images]="imagesSrc"></app-image-carrousel>
+</div>
+}
+<div class="flex align-items-center justify-content-center">
+  <p-button (click)="showDialog()">Take a picture</p-button>
+
+  <span class="bold-text mx-4">OR</span>
+
+  <p-fileUpload #fileUploader mode="basic" accept="image/*" [multiple]="true" [customUpload]="true"
+    [maxFileSize]="10000000" (uploadHandler)="onImageUpload($event)" [auto]="true" chooseLabel="Upload">
+  </p-fileUpload>
+</div>
+
+<p-dialog [(visible)]="dialogVisible" [modal]="true">
+  <webcam [imageQuality]="1" [videoOptions]="videoOptions" [trigger]="triggerObservable"
+    (imageCapture)="handleImage($event)" (initError)="handleInitError($event)">
+  </webcam>
+
+  <p-button (click)="capture()">Take picture</p-button>
+</p-dialog>

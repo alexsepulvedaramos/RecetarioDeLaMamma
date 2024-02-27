@@ -1,13 +1,13 @@
 <div class="card main-content">
   <span class="p-fluid">
     <p-autoComplete [(ngModel)]="searchParam" [suggestions]="suggestedRecipes" [showClear]="true" field="name"
-      [placeholder]="'Busca una receta...'" (completeMethod)="searchRecipe($event)" (onSelect)="showRecipes($event)"
+      [placeholder]="'Search for a recipe...'" (completeMethod)="searchRecipe($event)" (onSelect)="showRecipes($event)"
       (onClear)="resetRecipes()">
     </p-autoComplete>
   </span>
   <div class="grid">
     @for(recipe of filteredRecipes; track recipe.id) {
-    <app-recipe-card [recipe]="recipe" class="col-12 lg:col-4"></app-recipe-card>
+    <app-recipe-card [recipe]="recipe" class="col-12 md:col-6 lg:col-4"></app-recipe-card>
     }
   </div>
 </div>

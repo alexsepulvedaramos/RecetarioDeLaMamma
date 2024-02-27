@@ -1,0 +1,111 @@
+<div class="grid grid-nogutter">
+  @for(ingredient of ingredients; track ingredient; let i = $index;) {
+  <div class="col-12 grid grid-nogutter border-card justify-content-start my-1"
+    [ngClass]="{ 'highlighted-card': i === editIndex && editing }">
+    <div class="col-1 food-icon">
+      <img [src]="ingredient.icon ? ingredient.icon : './../../../../assets/app-icon-white.png'">
+    </div>
+    <div class="col-4 lg:col-5 pl-2 white-space-nowrap overflow-hidden text-overflow-ellipsis">
+      {{ ingredient.name }}
+    </div>
+    <div class="col-4 lg:col-4 pr-2 text-right white-space-nowrap overflow-hidden text-overflow-ellipsis">
+      {{ ingredient.amount }} {{ ingredient.unit }}
+    </div>
+    <div class="col-3 lg:col-2 flex justify-content-end">
+      <p-button class="little-button mr-2" [disabled]="editing" (onClick)="editIngredient(ingredient)">
+        <i class="pi pi-pencil"></i>
+      </p-button>
+      <p-button class="little-button eraser" [disabled]="editing" (onClick)="deleteIngredient(ingredient)">
+        <i class="pi pi-trash"></i>
+      </p-button>
+    </div>
+  </div>
+  }
+
+  @if(ingredients.length > 0) {
+  <div class="col-12 my-3"></div>
+  }
+
+  <form [formGroup]="ingredientForm" (ngSubmit)="saveIngredient()">
+    @if(!editing) {
+    <span class="bold-text block mb-1">
+      {{ 'New Ingredient:' }}
+    </span>
+    }
+    @else {
+    <span class="bold-text block mb-1">
+      {{ 'Editing Ingredient ' + (editIndex + 1) + ':' }}
+    </span>
+    }
+
+    <div class="ingredient-form">
+      <div class="grid p-2">
+        <div class="col-6 lg:col-4">
+          <div class="p-field">
+            <span class="light-text">Name:</span>
+            <input required id="name" type="text" pInputText formControlName="name">
+          </div>
+        </div>
+
+        <div class="col-6 lg:col-2">
+          <div class="p-field">
+            <span class="light-text">Amount:</span>
+            <input required id="amount" type="number" pInputNumber formControlName="amount">
+          </div>
+        </div>
+
+        <div class="col-6 lg:col-3">
+          <div class="p-field">
+            <span class="light-text">Unit:</span>
+            <p-dropdown formControlName="unit" [options]="mesurementUnits" [filter]="true" filterBy="value"
+              optionLabel="label" optionValue="value"></p-dropdown>
+          </div>
+        </div>
+
+        <div class="col-6 lg:col-3">
+          <div class="p-field">
+            <span class="light-text">Icon:</span>
+            <p-dropdown class="icon-overlay" formControlName="icon" [options]="ingredientIcons" [showClear]="true"
+              [filter]="true" filterBy="value" optionLabel="value" optionValue="label">
+
+              <ng-template pTemplate="selectedItem">
+                @if (ingredientForm.get('icon')?.value) {
+                <div class="flex align-items-center">
+                  <div class="food-icon">
+                    <img [src]="ingredientForm.get('icon')?.value" class="food-icon" />
+                  </div>
+                </div>
+                }
+              </ng-template>
+
+              <ng-template let-icon pTemplate="item">
+                <div class="flex align-items-center gap-2">
+                  <div class="food-icon">
+                    <img [src]="icon.label" class="food-icon" />
+                  </div>
+                  <div>{{ icon.value }}</div>
+                </div>
+              </ng-template>
+
+            </p-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p-button type="submit" class="normalized-button mr-2" [disabled]="!ingredientForm.valid">
+      {{ editing ? 'Edit ingredient' : 'Add ingredient' }}
+    </p-button>
+
+    @if(!editing) {
+    <p-button class="normalized-button eraser" [disabled]="ingredientForm.pristine" (onClick)="resetForm()">
+      <i class="pi pi-eraser"></i>
+    </p-button>
+    }
+    @else {
+    <p-button class="normalized-button eraser" (onClick)="cancelEditing()">
+      Cancel
+    </p-button>
+    }
+  </form>
+</div>

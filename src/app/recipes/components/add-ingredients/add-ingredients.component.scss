@@ -1,0 +1,23 @@
+:host::ng-deep {
+  .ingredient-form {
+    padding: 0.2rem !important;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+  }
+
+  .food-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+
+    >img {
+      height: 30px;
+    }
+  }
+
+  .icon-overlay .p-overlay {
+    left: auto !important;
+    right: 0px !important;
+  }
+}

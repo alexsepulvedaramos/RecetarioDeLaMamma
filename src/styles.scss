@@ -1,5 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 * {
+  /* You can add global styles to this file, and also import other style files */
   font-family: "Fredoka", sans-serif;
   font-size: 1.1rem;
 }
@@ -15,15 +15,21 @@ body {
 
 //--------- START OF Text styles ----------------
 .recipe-title {
-  color: var(--primary-color);
-  font-size: 3rem;
-  font-weight: 500;
+  color: var(--primary-900);
+  font-size: 3.4rem;
+  font-weight: 550;
 }
 
 .title2 {
   color: var(--primary-color);
   font-size: 2.4rem;
-  font-weight: 400;
+  font-weight: 450;
+}
+
+.title3 {
+  color: var(--primary-color);
+  font-size: 1.9rem;
+  font-weight: 450;
 }
 
 .light-text {
@@ -32,10 +38,16 @@ body {
   font-size: 1rem;
 }
 
-.bold-text {
-  color: var(--bluegray-800);
+.big-bold-text {
+  color: var(--primary-900);
   font-weight: 500;
   font-size: 1.5rem;
+}
+
+.bold-text {
+  color: var(--primary-900);
+  font-weight: 500;
+  font-size: 1.2rem;
 }
 
 @media only screen and (max-width: 768px) {
@@ -44,20 +56,38 @@ body {
   }
 
   .recipe-title {
-    font-size: 2.1rem;
-    font-weight: 500;
+    font-size: 2.2rem;
+    font-weight: 550;
   }
 
   .title2 {
-    font-size: 1.7rem;
-    font-weight: 400;
+    font-size: 1.8rem;
+    font-weight: 450;
+  }
+
+  .title3 {
+    font-size: 1.6rem;
+    font-weight: 450;
   }
 
   .light-text {
     font-weight: 400;
-    font-size: 0.9rem;
+    font-size: 1rem;
+  }
+
+  .big-bold-text {
+    color: var(--primary-900);
+    font-weight: 500;
+    font-size: 1.4rem;
+  }
+
+  .bold-text {
+    color: var(--primary-900);
+    font-weight: 500;
+    font-size: 1.1rem;
   }
 }
+
 //----------- END OF Text styles ----------------
 
 // Margin for main content showing upper nav var
@@ -80,6 +110,19 @@ body {
   overflow: hidden;
 }
 
+.highlighted-card {
+  border: 2px solid var(--primary-color);
+  background-color: rgba(245, 159, 11, 0.3);
+  // box-shadow: 0 0 5px rgba(245, 158, 11, 0.8), 0 0 15px rgba(245, 158, 11, 0.8);
+}
+
+.highlighted-borderless {
+  border-radius: 25px;
+  border: 2px solid var(--primary-color);
+  background-color: rgba(245, 159, 11, 0.3);
+  // box-shadow: 0 0 5px rgba(245, 158, 11, 0.8), 0 0 15px rgba(245, 158, 11, 0.8);
+}
+
 // PrimeNG mods -------------------------------------------------------------------
 .p-autocomplete-panel {
   border-radius: 25px;
@@ -87,6 +130,86 @@ body {
 
 p-avatar.p-element {
   display: flex;
+}
+
+.p-button {
+  border-radius: 25px;
+}
+
+form input {
+  padding: 0.3rem;
+  padding-left: 1rem;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  width: 100%;
+}
+
+form .p-input-icon-right {
+  width: 100%;
+
+  p-inputnumber,
+  .p-inputnumber {
+    width: 100%;
+    display: block;
+  }
+}
+
+form input:focus {
+  border: 2px solid var(--primary-color);
+}
+
+form .p-dropdown {
+  width: 100%;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
+.p-dropdown-label.p-inputtext {
+  padding: 0.3rem;
+  padding-left: 1rem;
+}
+
+.p-dropdown-panel {
+  border-radius: 10px;
+}
+
+.p-dropdown .p-dropdown-trigger {
+  width: 2rem;
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  box-shadow: none;
+  border: 2px solid var(--primary-color);
+}
+
+.p-inputtext:enabled:focus {
+  box-shadow: none;
+}
+
+.little-button .p-button {
+  padding: 0.5rem;
+}
+
+.normalized-button {
+  button {
+    margin-top: 0.5rem;
+    height: 2.5rem;
+  }
+}
+
+.eraser button {
+  background-color: var(--primary-900);
+  border-color: var(--primary-900);
+}
+
+textarea {
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  width: 100%;
+}
+
+.p-button-label {
+  font-weight: inherit;
 }
 
 // Scrollbar personalization
@@ -105,4 +228,3 @@ p-avatar.p-element {
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--yellow-500);
 }
-

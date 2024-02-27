@@ -1,4 +1,46 @@
-<div>
-  <span>add-recipe-page works!
-  </span>
+<div class="main-content">
+
+  <div class="container">
+    <span class="recipe-title text-center mb-1">Create a new recipe</span>
+
+    <form [formGroup]="recipeForm" (ngSubmit)="saveRecipe()">
+      <span class="title2 block mt-4 mb-3">Recipe name</span>
+      <input class="w-full" type="text" pInputText formControlName="name" />
+
+      <span class="title2 block mt-4 mb-3">Recipe info</span>
+      <div class="grid">
+        <div class="col-6">
+          <span class="bold-text block">Time:</span>
+          <span class="p-input-icon-right">
+            <p-inputNumber [min]="0" [max]="999" [maxlength]="3" placeholder="Total minutes"
+              formControlName="minutes"></p-inputNumber>
+            <i class="pi pi-clock"></i>
+          </span>
+        </div>
+
+        <div class="col-6">
+          <span class="bold-text block">Portions:</span>
+          <span class="p-input-icon-right">
+            <p-inputNumber type="number" placeholder="Portion number" formControlName="portions" />
+            <i class="pi pi-users"></i>
+          </span>
+        </div>
+      </div>
+
+      <span class="title2 block mt-4 mb-3">Ingredients</span>
+      <app-add-ingredients (ingredientsAdded)="updateIngredients($event)"></app-add-ingredients>
+
+      <span class="title2 block mt-4 mb-3">Instructions</span>
+      <app-add-instructions (instructionsAdded)="updateInstructions($event)"></app-add-instructions>
+
+      <span class="title2 block mt-4 mb-3">Images</span>
+      <app-image-uploader (imagesAdded)="updateImages($event)"></app-image-uploader>
+
+      <hr class="border-1 bold-text w-full mt-5">
+
+      <p-button type="submit" class="biggest-button flex justify-content-center" [disabled]="!recipeForm.valid">
+        Save recipe <i class="ml-2 pi pi-cloud-upload"></i>
+      </p-button>
+    </form>
+  </div>
 </div>

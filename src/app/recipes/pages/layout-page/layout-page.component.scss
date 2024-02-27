@@ -21,6 +21,10 @@
     transform: translateX(-50%);
   }
 
+  .menu-buttons .p-button {
+    border-radius: 10px !important;
+  }
+
   @media only screen and (max-width: 768px) {
     .p-toolbar-group-start {
       width: 10%;

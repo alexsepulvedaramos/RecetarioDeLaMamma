@@ -1,0 +1,22 @@
+export enum MESUREMENT_UNITS {
+  Grams = 'Grams (g)',
+  Kilograms = 'Kilograms (kg)',
+  Milligrams = 'Milligrams (mg)',
+  Liters = 'Liters (L)',
+  Milliliters = 'Milliliters (mL)',
+  Centiliters = 'Centiliters (cL)',
+  Teaspoons = 'Teaspoons (tsp)',
+  Tablespoons = 'Tablespoons (tbsp)',
+  Cups = 'Cups (cup)',
+  Ounces = 'Ounces (oz)',
+  Pounds = 'Pounds (lb)',
+  Units = 'Units (unit)',
+  Pieces = 'Pieces (pc)',
+  Pinches = 'Pinches (pinch)',
+  Zests = 'Zests (zest)',
+  Leaves = 'Leaves (leaves)',
+  Slices = 'Slices (slices)',
+  Stalks = 'Stalks (stalks)',
+  Cloves = 'Cloves (cloves)',
+  Drops = 'Drops (drops)'
+}

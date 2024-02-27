@@ -1,0 +1,8 @@
+@if (images && images.length > 0 ) {
+<div class="recipe-image" [ngStyle]="{'background-image': 'url(' + getCurrentImage() + ')'}">
+  @if (images && images.length > 1 ) {
+  <p-button class="button" (click)="prevImage()"><i class="pi pi-chevron-left"></i></p-button>
+  <p-button class="button" (click)="nextImage()"><i class="pi pi-chevron-right"></i></p-button>
+  }
+</div>
+}

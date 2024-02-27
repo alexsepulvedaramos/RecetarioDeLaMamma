@@ -21,7 +21,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpClientModule,
     SharedModule,
-    PrimeNgModule
+    PrimeNgModule,
   ],
   bootstrap: [AppComponent]
 })
