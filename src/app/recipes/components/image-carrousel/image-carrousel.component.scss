@@ -12,53 +12,56 @@
     overflow: hidden;
     display: flex;
     justify-content: space-between;
-  }
 
-  p-button,
-  p-button .p-button {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 50px;
-    width: 50px;
-    background-color: rgba(245, 159, 11, 0.3);
-    border: transparent;
 
-    >.pi {
-      color: white;
-      font-size: 1.5rem;
+    p-button,
+    p-button .p-button {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 50px;
+      width: 50px;
+      background-color: rgba(245, 159, 11, 0.3);
+      border: transparent;
+
+      >.pi {
+        color: white;
+        font-size: 1.5rem;
+      }
+    }
+
+    p-button .p-button {
+      border-radius: 15px;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button {
+      height: 50px;
+      width: 50px;
+      margin: 1%;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: transparent;
+      border: transparent;
+
+      >.pi {
+        color: white;
+        font-size: 1.5rem;
+      }
+    }
+
+    .button:hover {
+      background-color: #f59f0b50;
+      border: 1px solid #f59f0b50;
+      border-radius: 15px;
     }
   }
 
-  p-button .p-button {
-    border-radius: 15px;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
 
-  .button {
-    height: 50px;
-    width: 50px;
-    margin: 1%;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: transparent;
-    border: transparent;
-
-    > .pi {
-      color: white;
-      font-size: 1.5rem;
-    }
-  }
-
-  .button:hover {
-    background-color: #f59f0b50;
-    border: 1px solid #f59f0b50;
-    border-radius: 15px;
-  }
 
   @media only screen and (max-width: 768px) {
     .recipe-image {

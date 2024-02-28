@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -6,13 +6,14 @@ import { Ingredient, Recipe } from '../../interfaces/recipe';
 import { UserInfo } from '../../interfaces/user';
 
 import { FirestoreService } from '../../services/firestore.service';
+import { ImageStorageService } from '../../services/image-storage.service';
 
 @Component({
   selector: 'app-add-recipe',
   templateUrl: './add-recipe-page.component.html',
   styleUrl: './add-recipe-page.component.scss'
 })
-export class AddRecipePageComponent {
+export class AddRecipePageComponent implements OnInit, OnDestroy {
   public imagesSrc: string[] = [];
   public ingredients: Ingredient[] = [];
   public instructions: string[] = [];
@@ -48,20 +49,27 @@ export class AddRecipePageComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private firestoreService: FirestoreService,
     private router: Router,
-  ) { }
+    private firestoreService: FirestoreService,
+    private imageStorageService: ImageStorageService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    // Empty local src images and image files arrays.
+    this.imageStorageService.setLocalImageSource([]);
+    this.imageStorageService.setImageFiles([]);
+  }
+
+  ngOnDestroy(): void {
+    // Empty local src images and image files arrays.
+    this.imageStorageService.setLocalImageSource([]);
+    this.imageStorageService.setImageFiles([]);
+  }
 
   get currentRecipe(): Recipe {
     const recipe = this.recipeForm.value as Recipe;
     return recipe;
-  }
-
-  updateImages(imagesSrc: string[]): void {
-    this.imagesSrc = imagesSrc;
-    this.recipeForm.patchValue({
-      images: this.imagesSrc
-    });
   }
 
   updateIngredients(ingredients: Ingredient[]): void {
@@ -81,13 +89,22 @@ export class AddRecipePageComponent {
   saveRecipe() {
     if (this.recipeForm.valid) {
 
-      this.firestoreService.addRecipe(this.currentRecipe)
-        .subscribe(recipe => {
-          this.router.navigate(['recipes/', recipe.id]);
-          console.log('Successfully added')
-        })
+      this.imageStorageService.uploadImageFiles().subscribe(serverImages => {
+        if (serverImages.length > 0) {
+          this.recipeForm.patchValue({
+            images: serverImages
+          });
+        }
 
-      console.log(this.currentRecipe);
+        this.firestoreService.addRecipe(this.currentRecipe)
+          .subscribe(recipe => {
+            this.router.navigate(['recipes/', recipe.id]);
+            console.log('Successfully added')
+          })
+
+        console.log(this.currentRecipe);
+      });
+
     } else {
       return;
     }

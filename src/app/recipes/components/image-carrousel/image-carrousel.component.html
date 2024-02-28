@@ -1,8 +1,19 @@
 @if (images && images.length > 0 ) {
-<div class="recipe-image" [ngStyle]="{'background-image': 'url(' + getCurrentImage() + ')'}">
-  @if (images && images.length > 1 ) {
-  <p-button class="button" (click)="prevImage()"><i class="pi pi-chevron-left"></i></p-button>
-  <p-button class="button" (click)="nextImage()"><i class="pi pi-chevron-right"></i></p-button>
+  <div class="recipe-image" [ngStyle]="{'background-image': 'url(' + getCurrentImage() + ')'}">
+    @if (images.length > 1 ) {
+      <p-button class="button" (click)="prevImage()"><i class="pi pi-chevron-left"></i></p-button>
+      <p-button class="button" (click)="nextImage()"><i class="pi pi-chevron-right"></i></p-button>
+    }
+  </div>
+
+  @if (editingControls) {
+    <div class="bold-text block flex justify-content-center align-items-center mb-1">
+      <span class="bold-text mr-3">
+        {{ 'Picture ' + (imageIndex + 1) + '/' + images.length }}
+      </span>
+      <p-button class="eraser" (onClick)="deleteImage()">
+        <i class="pi pi-trash"></i>
+      </p-button>
+    </div>
   }
-</div>
 }

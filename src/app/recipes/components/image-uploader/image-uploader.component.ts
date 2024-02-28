@@ -11,12 +11,9 @@ import { ImageStorageService } from '../../services/image-storage.service';
   styleUrl: './image-uploader.component.scss'
 })
 export class ImageUploaderComponent {
-  @Output() imagesAdded = new EventEmitter<string[]>();
+  @ViewChild('fileUploader', { static: false }) fileUploader?: FileUpload;
 
   public dialogVisible: boolean = false;
-
-  public webcamImage: WebcamImage | undefined;
-  public uploadedImage: File | undefined;
 
   public imagesSrc: string[] = [];
   private trigger: Subject<void> = new Subject<void>();
@@ -24,6 +21,9 @@ export class ImageUploaderComponent {
   constructor(
     private imageStorageService: ImageStorageService
   ) {
+    this.imageStorageService.getLocalImageSources().subscribe(imageSources => {
+      this.imagesSrc = imageSources;
+    })
   }
 
   showDialog(): void {
@@ -32,15 +32,11 @@ export class ImageUploaderComponent {
 
   // Method called when an image is captured
   handleImage(webcamImage: WebcamImage): void {
-    this.webcamImage = webcamImage;
+    const dataURI = webcamImage.imageAsDataUrl;
+    const file = this.imageStorageService.dataURItoFile(dataURI);
 
-    this.imagesSrc.push(webcamImage.imageAsDataUrl);
-
-    // Update parent instructions info
-    this.imagesAdded.emit(this.imagesSrc);
-
-    // TODO Images should be named with recipeId
-    // this.imageStorageService.uploadImageFromWebcam(webcamImage);
+    this.imageStorageService.addLocalImageSource(dataURI);
+    this.imageStorageService.addImageFile(file);
   }
 
   // Method called if there is an error initializing the webcam
@@ -72,8 +68,14 @@ export class ImageUploaderComponent {
 
   onImageUpload(filesHandler: any): void {
     filesHandler.files.forEach((file: any) => {
-      this.uploadedImage = file;
-      this.imagesSrc.push(file.objectURL.changingThisBreaksApplicationSecurity);
+      const localFileUrl = file.objectURL.changingThisBreaksApplicationSecurity;
+
+      this.imageStorageService.addLocalImageSource(localFileUrl);
+      this.imageStorageService.addImageFile(file);
     });
+
+    if (this.fileUploader) {
+      this.fileUploader.clear();
+    }
   }
 }

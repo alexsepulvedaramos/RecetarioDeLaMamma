@@ -20,7 +20,7 @@
 <form [formGroup]="instructionsForm" (ngSubmit)="saveInstruction()">
   @if(!editing) {
   <span class="bold-text block mb-1">
-    {{ 'New Instruction ' + (instructions.length + 1) + ':' }}
+    {{ 'New Instruction:' }}
   </span>
   }
   @else {
