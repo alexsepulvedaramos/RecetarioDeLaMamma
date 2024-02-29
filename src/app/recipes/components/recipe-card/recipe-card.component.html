@@ -1,7 +1,4 @@
-<div [routerLink]="['/recipes', recipe.id]" class="recipe-box" [ngStyle]="{'background-image': getRecipeImg() !== '' ?
-  'url(' + getRecipeImg() + ')' :
-  'url(' + './../../../../assets/app-icon-white.png' +')'
-}">
+<div [routerLink]="['/recipes', recipe.id]" class="recipe-box">
   <div class="gradient-overlay grid grid-nogutter">
     <span id="recipe-title" class="col-8">{{this.recipe.name}}</span>
     <span id="recipe-time" class="col-3">
@@ -9,4 +6,5 @@
       {{this.recipe.minutes | minutesToHours}}
     </span>
   </div>
+  <img [src]="getRecipeImg()" [alt]="this.recipe.name" class="recipe-image">
 </div>

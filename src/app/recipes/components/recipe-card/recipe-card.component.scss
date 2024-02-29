@@ -4,10 +4,21 @@
     border: 1px solid #ccc;
     border-radius: 15px;
     box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     height: 100%;
+    overflow: hidden;
+  }
+
+  .recipe-image {
+    /* Style the image here */
+    width: 100%;
+    /* Adjust width as needed */
+    height: auto;
+    /* Maintain aspect ratio */
+    object-fit: cover;
+    z-index: 0;
+    position: relative;
+    transform: translateY(-60%);
+    /* Place behind the gradient overlay */
   }
 
   .gradient-overlay {
@@ -58,11 +69,6 @@
   }
 
   @media only screen and (max-width: 768px) {
-    .gradient-overlay {
-      top: 30%;
-      height: 70%;
-    }
-
     #recipe-title {
       font-size: 1.5rem;
     }
