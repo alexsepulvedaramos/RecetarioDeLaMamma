@@ -5,9 +5,14 @@
       (onClear)="resetRecipes()">
     </p-autoComplete>
   </span>
-  <div class="grid">
-    @for(recipe of filteredRecipes; track recipe.id) {
-    <app-recipe-card [recipe]="recipe" class="col-12 md:col-6"></app-recipe-card>
-    }
-  </div>
+  <p-dataView [value]="filteredRecipes" [layout]="'grid'" [rows]="10" [paginator]="true" [sortField]="'name'" [sortOrder]="1">
+    <ng-template let-recipe pTemplate="grid" let-filteredRecipes>
+      <div class="grid">
+        @for(recipe of filteredRecipes; track recipe.id) {
+        <app-recipe-card [recipe]="recipe" class="col-12 md:col-6"></app-recipe-card>
+        }
+      </div>
+    </ng-template>
+  </p-dataView>
+
 </div>
