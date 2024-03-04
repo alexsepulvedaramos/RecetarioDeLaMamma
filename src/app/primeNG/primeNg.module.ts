@@ -13,9 +13,10 @@ import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { RippleModule } from 'primeng/ripple';
 import { SidebarModule } from 'primeng/sidebar';
+import { SkeletonModule } from 'primeng/skeleton';
 import { ToolbarModule } from 'primeng/toolbar';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   exports: [
@@ -32,9 +33,10 @@ import { ToolbarModule } from 'primeng/toolbar';
     InputNumberModule,
     InputTextareaModule,
     ProgressSpinnerModule,
-    RippleModule,
     SidebarModule,
+    SkeletonModule,
     ToolbarModule,
+    TranslateModule,
   ]
 })
 export class PrimeNgModule { }

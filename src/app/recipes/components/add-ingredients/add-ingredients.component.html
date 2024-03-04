@@ -26,15 +26,15 @@
   <div class="col-12 my-3"></div>
   }
 
-  <form [formGroup]="ingredientForm" (ngSubmit)="saveIngredient()">
+  <form [formGroup]="ingredientForm" class="w-full" (ngSubmit)="saveIngredient()">
     @if(!editing) {
     <span class="bold-text block mb-1">
-      {{ 'New Ingredient:' }}
+      {{ 'NEW_RECIPE.INGREDIENTS.NEW_INGREDIENT' | translate}}
     </span>
     }
     @else {
     <span class="bold-text block mb-1">
-      {{ 'Editing Ingredient ' + (editIndex + 1) + ':' }}
+      {{ ('NEW_RECIPE.INGREDIENTS.EDIT_INGREDIENT' | translate) + ' ' + (editIndex + 1) + ':' }}
     </span>
     }
 
@@ -42,21 +42,21 @@
       <div class="grid p-2">
         <div class="col-6 lg:col-4">
           <div class="p-field">
-            <span class="light-text">Name:</span>
+            <span class="light-text">{{ 'NEW_RECIPE.INGREDIENTS.NAME' | translate}}:</span>
             <input required id="name" type="text" pInputText formControlName="name">
           </div>
         </div>
 
         <div class="col-6 lg:col-2">
           <div class="p-field">
-            <span class="light-text">Amount:</span>
+            <span class="light-text">{{ 'NEW_RECIPE.INGREDIENTS.AMOUNT' | translate}}:</span>
             <input required id="amount" type="number" pInputNumber formControlName="amount">
           </div>
         </div>
 
         <div class="col-6 lg:col-3">
           <div class="p-field">
-            <span class="light-text">Unit:</span>
+            <span class="light-text">{{ 'NEW_RECIPE.INGREDIENTS.MESURE' | translate}}:</span>
             <p-dropdown formControlName="unit" [options]="mesurementUnits" [filter]="true" filterBy="value"
               optionLabel="label" optionValue="value"></p-dropdown>
           </div>
@@ -64,7 +64,7 @@
 
         <div class="col-6 lg:col-3">
           <div class="p-field">
-            <span class="light-text">Icon:</span>
+            <span class="light-text">{{ 'NEW_RECIPE.INGREDIENTS.ICON' | translate}}:</span>
             <p-dropdown class="icon-overlay" formControlName="icon" [options]="ingredientIcons" [showClear]="true"
               [filter]="true" filterBy="value" optionLabel="value" optionValue="label">
 
@@ -94,7 +94,8 @@
     </div>
 
     <p-button type="submit" class="normalized-button mr-2" [disabled]="!ingredientForm.valid">
-      {{ editing ? 'Edit ingredient' : 'Add ingredient' }}
+      {{ editing ? ('NEW_RECIPE.INGREDIENTS.EDIT_BUTTON' | translate) :
+      ('NEW_RECIPE.INGREDIENTS.ADD_BUTTON' | translate) }}
     </p-button>
 
     @if(!editing) {
@@ -104,7 +105,7 @@
     }
     @else {
     <p-button class="normalized-button eraser" (onClick)="cancelEditing()">
-      Cancel
+      {{ 'NEW_RECIPE.INGREDIENTS.CANCEL_BUTTON' | translate }}
     </p-button>
     }
   </form>

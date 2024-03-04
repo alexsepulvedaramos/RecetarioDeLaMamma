@@ -1,11 +1,12 @@
 <div class="card main-content">
   <span class="p-fluid">
     <p-autoComplete [(ngModel)]="searchParam" [suggestions]="suggestedRecipes" [showClear]="true" field="name"
-      [placeholder]="'Search for a recipe...'" (completeMethod)="searchRecipe($event)" (onSelect)="showRecipes($event)"
-      (onClear)="resetRecipes()">
+      [placeholder]="'HOME.SEARCHBOX' | translate" (completeMethod)="searchRecipe($event)"
+      (onSelect)="showRecipes($event)" (onClear)="resetRecipes()">
     </p-autoComplete>
   </span>
-  <p-dataView [value]="filteredRecipes" [layout]="'grid'" [rows]="10" [paginator]="true" [sortField]="'name'" [sortOrder]="1">
+  <p-dataView [value]="filteredRecipes" [layout]="'grid'" [rows]="pageSize" [paginator]="true" [sortField]="'name'"
+    [sortOrder]="1" [emptyMessage]="emptyMessage()">
     <ng-template let-recipe pTemplate="grid" let-filteredRecipes>
       <div class="grid">
         @for(recipe of filteredRecipes; track recipe.id) {

@@ -9,7 +9,7 @@
   @if (editingControls) {
     <div class="bold-text block flex justify-content-center align-items-center mb-1">
       <span class="bold-text mr-3">
-        {{ 'Picture ' + (imageIndex + 1) + '/' + images.length }}
+        {{ ( 'NEW_RECIPE.IMAGES.PICTURE' | translate ) + ' ' + (imageIndex + 1) + '/' + images.length }}
       </span>
       <p-button class="eraser" (onClick)="deleteImage()">
         <i class="pi pi-trash"></i>

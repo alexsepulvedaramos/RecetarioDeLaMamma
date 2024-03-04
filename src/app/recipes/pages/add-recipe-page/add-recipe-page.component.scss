@@ -4,8 +4,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-left: 28%;
-    margin-right: 28%;
+    margin-left: 25%;
+    margin-right: 25%;
 
     >* {
       width: 100%;
@@ -50,11 +50,11 @@
     border: 2px solid var(--primary-900);
     justify-content: space-evenly;
     align-items: center;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 500;
 
     >.pi {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 500;
     }
   }
@@ -75,10 +75,10 @@
 
     .biggest-button button {
       width: 80%;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
 
       >.pi {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
     }
   }

@@ -123,6 +123,17 @@ body {
   // box-shadow: 0 0 5px rgba(245, 158, 11, 0.8), 0 0 15px rgba(245, 158, 11, 0.8);
 }
 
+.food-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+
+  >img {
+    height: 29px;
+  }
+}
+
 // PrimeNG mods -------------------------------------------------------------------
 .p-autocomplete-panel {
   border-radius: 25px;

@@ -9,6 +9,7 @@ export interface Recipe {
   instructions: string[];
   minutes?: number;
   portions?: number;
+  language?: 'ES' | 'EN';
   author: UserInfo;
   name: string;
 }
@@ -34,6 +35,7 @@ export const recipeConverter: FirestoreDataConverter<Recipe> = {
       instructions: recipe.instructions,
       minutes: recipe.minutes,
       portions: recipe.portions,
+      language: recipe.language,
       author: recipe.author,
       name: recipe.name,
     };
@@ -53,6 +55,7 @@ export const recipeConverter: FirestoreDataConverter<Recipe> = {
       instructions: data['instructions'],
       minutes: data['minutes'],
       portions: data['portions'],
+      language: data['language'],
       author: data['author'],
       name: data['name'],
     };

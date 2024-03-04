@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { AutoCompleteCompleteEvent, AutoCompleteSelectEvent } from 'primeng/autocomplete';
+import { TranslateService } from '@ngx-translate/core';
+
 import { FirestoreService } from '../../services/firestore.service';
+
 import { Recipe } from '../../interfaces/recipe';
 
 @Component({
@@ -12,17 +15,55 @@ export class RecipeListPageComponent {
 
   searchParam: any;
 
+  // Paginator controls
+  pageSize: number = 10;
+  pageNumber: number = 0;
+
   recipes: Recipe[] = [];
   filteredRecipes: Recipe[] = [];
   suggestedRecipes: Recipe[] = [];
 
   constructor(
-    private firestoreService: FirestoreService
+    private firestoreService: FirestoreService,
+    private translateService: TranslateService
   ) {
-    this.firestoreService.getAllRecipes().subscribe(recipes => {
-      console.log(recipes);
-      this.recipes = recipes;
-      this.filteredRecipes = this.recipes;
+    const lastFetchTimeStr = localStorage.getItem('lastRecipeFetch');
+    const lastFetchLanguage = localStorage.getItem('lastRecipeLanguage');
+    const recipeAdded = localStorage.getItem('recipeAdded') ? JSON.parse(localStorage.getItem('recipeAdded') as string) : false;
+    const lastFetchTime = lastFetchTimeStr ? parseInt(lastFetchTimeStr, 10) : 0;
+    const currentTime = new Date().getTime();
+
+    if (recipeAdded || (lastFetchLanguage !== this.translateService.currentLang) || (!lastFetchTime || currentTime - lastFetchTime > 5 * 60 * 1000)) {
+      this.firestoreService.getAllRecipes().subscribe(recipes => {
+        // Check if 5 minutes have passed from last  fetch.
+        this.recipes = recipes;
+        this.filteredRecipes = this.recipes;
+
+        // Store time and content of fetch data.
+        localStorage.setItem('lastRecipeFetch', currentTime.toString());
+        localStorage.setItem('lastRecipeLanguage', this.translateService.currentLang);
+        localStorage.setItem('recipeAdded', 'false');
+        localStorage.setItem('recipes', JSON.stringify(this.recipes));
+      });
+    } else {
+      // Use recipes from local storage if they are recent.
+      const recipesFromStorage = localStorage.getItem('recipes');
+
+      if (recipesFromStorage) {
+        this.recipes = JSON.parse(recipesFromStorage) as Recipe[];
+        this.filteredRecipes = this.recipes;
+      }
+    }
+
+    this.translateService.onLangChange.subscribe(() => {
+      this.firestoreService.getAllRecipes().subscribe(recipes => {
+        this.recipes = recipes;
+        this.filteredRecipes = this.recipes;
+        localStorage.setItem('lastRecipeFetch', currentTime.toString());
+        localStorage.setItem('lastRecipeLanguage', this.translateService.currentLang);
+        localStorage.setItem('recipeAdded', 'false');
+        localStorage.setItem('recipes', JSON.stringify(this.recipes));
+      });
     });
   }
 
@@ -54,5 +95,13 @@ export class RecipeListPageComponent {
     });
 
     return filtered;
+  }
+
+  paginatorEvent(event: any): void {
+    this.pageNumber = event.page;
+  }
+
+  emptyMessage(): string {
+    return this.translateService.instant('HOME.NO_RECIPES');
   }
 }

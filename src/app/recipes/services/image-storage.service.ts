@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, from, forkJoin, map } from 'rxjs';
+import { Observable, BehaviorSubject, forkJoin, map, of } from 'rxjs';
 import { FirebaseStorage, StorageReference, getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 import { FirebaseApp, initializeApp } from 'firebase/app';
 
@@ -52,7 +52,7 @@ export class ImageStorageService {
         map(() => this.serverImageSources.value)
       );
     } else {
-      return from([]);
+      return of([]);
     }
   }
 

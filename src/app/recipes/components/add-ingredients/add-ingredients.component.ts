@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 import { Ingredient } from '../../interfaces/recipe';
 import { MESUREMENT_UNITS } from '../../interfaces/measurement-units.enum';
 import { FoodsService } from '../../services/foods.service';
+import { Foods } from '../../interfaces/foods';
 
 // Interface for Dropdown options
 interface dropdownOption {
@@ -36,42 +38,64 @@ export class AddIngredientsComponent {
   });
 
   public ingredientIcons: dropdownOption[] = [];
+  public foods: Foods[] = [];
   public selectedIcon: string | undefined = undefined;
 
   public mesurementUnits: dropdownOption[] = [
-    { label: 'Grams (g)', value: MESUREMENT_UNITS.Grams },
-    { label: 'Kilograms (kg)', value: MESUREMENT_UNITS.Kilograms },
-    { label: 'Milligrams (mg)', value: MESUREMENT_UNITS.Milligrams },
-    { label: 'Liters (L)', value: MESUREMENT_UNITS.Liters },
-    { label: 'Milliliters (mL)', value: MESUREMENT_UNITS.Milliliters },
-    { label: 'Centiliters (cL)', value: MESUREMENT_UNITS.Centiliters },
-    { label: 'Teaspoons (tsp)', value: MESUREMENT_UNITS.Teaspoons },
-    { label: 'Tablespoons (tbsp)', value: MESUREMENT_UNITS.Tablespoons },
-    { label: 'Cups (cup)', value: MESUREMENT_UNITS.Cups },
-    { label: 'Ounces (oz)', value: MESUREMENT_UNITS.Ounces },
-    { label: 'Pounds (lb)', value: MESUREMENT_UNITS.Pounds },
-    { label: 'Units (unit)', value: MESUREMENT_UNITS.Units },
-    { label: 'Pieces (pc)', value: MESUREMENT_UNITS.Pieces },
-    { label: 'Pinches (pinch)', value: MESUREMENT_UNITS.Pinches },
-    { label: 'Zests (zest)', value: MESUREMENT_UNITS.Zests },
-    { label: 'Leaves (leaves)', value: MESUREMENT_UNITS.Leaves },
-    { label: 'Slices (slices)', value: MESUREMENT_UNITS.Slices },
-    { label: 'Stalks (stalks)', value: MESUREMENT_UNITS.Stalks },
-    { label: 'Cloves (cloves)', value: MESUREMENT_UNITS.Cloves },
-    { label: 'Drops (drops)', value: MESUREMENT_UNITS.Drops }
+    { label: this.translateService.instant('MESUREMENT_UNITS.GRAMS'), value: MESUREMENT_UNITS.Grams },
+    { label: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS'), value: MESUREMENT_UNITS.Kilograms },
+    { label: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS'), value: MESUREMENT_UNITS.Milligrams },
+    { label: this.translateService.instant('MESUREMENT_UNITS.LITERS'), value: MESUREMENT_UNITS.Liters },
+    { label: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS'), value: MESUREMENT_UNITS.Milliliters },
+    { label: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS'), value: MESUREMENT_UNITS.Centiliters },
+    { label: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS'), value: MESUREMENT_UNITS.Teaspoons },
+    { label: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS'), value: MESUREMENT_UNITS.Tablespoons },
+    { label: this.translateService.instant('MESUREMENT_UNITS.CUPS'), value: MESUREMENT_UNITS.Cups },
+    { label: this.translateService.instant('MESUREMENT_UNITS.OUNCES'), value: MESUREMENT_UNITS.Ounces },
+    { label: this.translateService.instant('MESUREMENT_UNITS.POUNDS'), value: MESUREMENT_UNITS.Pounds },
+    { label: this.translateService.instant('MESUREMENT_UNITS.UNITS'), value: MESUREMENT_UNITS.Units },
+    { label: this.translateService.instant('MESUREMENT_UNITS.PIECES'), value: MESUREMENT_UNITS.Pieces },
+    { label: this.translateService.instant('MESUREMENT_UNITS.PINCHES'), value: MESUREMENT_UNITS.Pinches },
+    { label: this.translateService.instant('MESUREMENT_UNITS.LEAVES'), value: MESUREMENT_UNITS.Leaves },
+    { label: this.translateService.instant('MESUREMENT_UNITS.SLICES'), value: MESUREMENT_UNITS.Slices },
+    { label: this.translateService.instant('MESUREMENT_UNITS.CLOVES'), value: MESUREMENT_UNITS.Cloves },
+    { label: this.translateService.instant('MESUREMENT_UNITS.DROPS'), value: MESUREMENT_UNITS.Drops }
   ];
 
   constructor(
     private foodsService: FoodsService,
     private formBuilder: FormBuilder,
+    private translateService: TranslateService
   ) {
+    this.translateService.onLangChange.subscribe(() => {
+      this.mesurementUnits = [
+        { label: this.translateService.instant('MESUREMENT_UNITS.GRAMS'), value: MESUREMENT_UNITS.Grams },
+        { label: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS'), value: MESUREMENT_UNITS.Kilograms },
+        { label: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS'), value: MESUREMENT_UNITS.Milligrams },
+        { label: this.translateService.instant('MESUREMENT_UNITS.LITERS'), value: MESUREMENT_UNITS.Liters },
+        { label: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS'), value: MESUREMENT_UNITS.Milliliters },
+        { label: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS'), value: MESUREMENT_UNITS.Centiliters },
+        { label: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS'), value: MESUREMENT_UNITS.Teaspoons },
+        { label: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS'), value: MESUREMENT_UNITS.Tablespoons },
+        { label: this.translateService.instant('MESUREMENT_UNITS.CUPS'), value: MESUREMENT_UNITS.Cups },
+        { label: this.translateService.instant('MESUREMENT_UNITS.OUNCES'), value: MESUREMENT_UNITS.Ounces },
+        { label: this.translateService.instant('MESUREMENT_UNITS.POUNDS'), value: MESUREMENT_UNITS.Pounds },
+        { label: this.translateService.instant('MESUREMENT_UNITS.UNITS'), value: MESUREMENT_UNITS.Units },
+        { label: this.translateService.instant('MESUREMENT_UNITS.PIECES'), value: MESUREMENT_UNITS.Pieces },
+        { label: this.translateService.instant('MESUREMENT_UNITS.PINCHES'), value: MESUREMENT_UNITS.Pinches },
+        { label: this.translateService.instant('MESUREMENT_UNITS.LEAVES'), value: MESUREMENT_UNITS.Leaves },
+        { label: this.translateService.instant('MESUREMENT_UNITS.SLICES'), value: MESUREMENT_UNITS.Slices },
+        { label: this.translateService.instant('MESUREMENT_UNITS.CLOVES'), value: MESUREMENT_UNITS.Cloves },
+        { label: this.translateService.instant('MESUREMENT_UNITS.DROPS'), value: MESUREMENT_UNITS.Drops }
+      ];
+
+      this.ingredientIcons = this.updateIngredientIcon();
+    });
+
     this.foodsService.getFoods().subscribe((foods) => {
-      this.ingredientIcons = foods.map(food => {
-        return {
-          label: food.iconURL,
-          value: food.name.find(name => name.language === 'EN')?.name ?? ''
-        }
-      })
+      this.foods = foods;
+
+      this.ingredientIcons = this.updateIngredientIcon();
     }
     );
   }
@@ -119,5 +143,16 @@ export class AddIngredientsComponent {
   resetForm(): void {
     this.ingredientForm.reset();
     this.ingredientForm.markAsPristine();
+  }
+
+  updateIngredientIcon(): dropdownOption[] {
+    return this.foods.map(food => {
+      const languageCode = this.translateService.currentLang.toLocaleUpperCase();
+
+      return {
+        label: food.iconURL,
+        value: food.name.find(name => name.language === languageCode)?.name ?? ''
+      }
+    })
   }
 }

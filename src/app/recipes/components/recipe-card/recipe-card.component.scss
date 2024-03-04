@@ -9,16 +9,12 @@
   }
 
   .recipe-image {
-    /* Style the image here */
     width: 100%;
-    /* Adjust width as needed */
     height: auto;
-    /* Maintain aspect ratio */
     object-fit: cover;
     z-index: 0;
     position: relative;
     transform: translateY(-60%);
-    /* Place behind the gradient overlay */
   }
 
   .gradient-overlay {
@@ -66,6 +62,10 @@
     .pi {
       font-size: 1.3rem;
     }
+  }
+
+  .fit-content {
+    display: contents;
   }
 
   @media only screen and (max-width: 768px) {

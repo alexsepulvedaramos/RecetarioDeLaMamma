@@ -1,7 +1,7 @@
 <div class="flex align-items-center justify-content-center">
   <p-fileUpload #fileUploader mode="basic" accept="image/*" [multiple]="true" [customUpload]="true" [fileLimit]="10"
-    [maxFileSize]="10000000" (uploadHandler)="onImageUpload($event)" [auto]="true" chooseLabel="Upload"
-    [uploadIcon]="'pi-upload'">
+    [maxFileSize]="10000000" (uploadHandler)="onImageUpload($event)" [auto]="true"
+    chooseLabel="{{ 'NEW_RECIPE.IMAGES.UPLOAD_BUTTON' | translate }}" [uploadIcon]="'pi-upload'">
   </p-fileUpload>
 
   <span class="bold-text mx-4">OR</span>
@@ -9,8 +9,7 @@
   <div>
     <p-button (click)="showDialog()">
       <i class="pi pi-camera mr-1"></i>
-      Take a picture
-    </p-button>
+      {{ 'NEW_RECIPE.IMAGES.CAMERA_BUTTON' | translate }} </p-button>
   </div>
 </div>
 

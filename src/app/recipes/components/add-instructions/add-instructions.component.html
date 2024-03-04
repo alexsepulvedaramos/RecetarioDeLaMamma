@@ -1,47 +1,50 @@
 @for(instruction of instructions; track instruction; let i = $index;) {
-<div class="p-2 grid grid-nogutter" [ngClass]="{ 'highlighted-borderless': i === editIndex && editing }">
-  <span class="col-1 big-bold-text flex align-items-center lg:justify-content-center">
-    {{ i + 1 + '. ' }}</span>
-  <span class="col-8 lg:col-9 flex align-items-center overflow-hidden">
-    {{ instruction }}
-  </span>
-  <div class="col-3 lg:col-2 flex justify-content-end">
-    <p-button class="little-button mr-2" [disabled]="editing" (onClick)="editInstruction(instruction)">
-      <i class="pi pi-pencil"></i>
-    </p-button>
-    <p-button class="little-button eraser" [disabled]="editing" (onClick)="deleteInstruction(instruction)">
-      <i class="pi pi-trash"></i>
-    </p-button>
+  <div class="p-2 grid grid-nogutter" [ngClass]="{ 'highlighted-borderless': i === editIndex && editing }">
+    <span class="col-1 big-bold-text flex align-items-center lg:justify-content-center">
+      {{ i + 1 + '. ' }}</span>
+    <span class="col-8 lg:col-9 flex align-items-center overflow-hidden">
+      {{ instruction }}
+    </span>
+    <div class="col-3 lg:col-2 flex justify-content-end">
+      <p-button class="little-button mr-2" [disabled]="editing" (onClick)="editInstruction(instruction)">
+        <i class="pi pi-pencil"></i>
+      </p-button>
+      <p-button class="little-button eraser" [disabled]="editing" (onClick)="deleteInstruction(instruction)">
+        <i class="pi pi-trash"></i>
+      </p-button>
+    </div>
   </div>
-</div>
-<hr class="border-50">
+  @if (i < instructions.length - 1) {
+    <hr class="border-50">
+  }
 }
 
-<form [formGroup]="instructionsForm" (ngSubmit)="saveInstruction()">
-  @if(!editing) {
-  <span class="bold-text block mb-1">
-    {{ 'New Instruction:' }}
-  </span>
-  }
-  @else {
-  <span class="bold-text p-1">
-    {{ 'Editing Instruction ' + (editIndex + 1) + ':' }}
-  </span>
-  }
-  <textarea [autoResize]="true" pInputTextarea formControlName="step"></textarea>
+  <form class="mt-4" [formGroup]="instructionsForm" (ngSubmit)="saveInstruction()">
+    @if(!editing) {
+    <span class="bold-text block mb-1">
+      {{ ('NEW_RECIPE.INSTRUCTIONS.TITLE' | translate) + ':'}}
+    </span>
+    }
+    @else {
+    <span class="bold-text p-1">
+      {{ ('NEW_RECIPE.INSTRUCTIONS.EDITING_INSTRUCTION' | translate) + ' ' + (editIndex + 1) + ':' }}
+    </span>
+    }
+    <textarea [autoResize]="true" pInputTextarea formControlName="step"></textarea>
 
-  <p-button type="submit" class="normalized-button mr-2" [disabled]="!instructionsForm.valid">
-    {{ editing ? 'Edit instruction' : 'Add instruction' }}
-  </p-button>
+    <p-button type="submit" class="normalized-button mr-2" [disabled]="!instructionsForm.valid">
+      {{ editing ? ('NEW_RECIPE.INSTRUCTIONS.EDIT_BUTTON' | translate) :
+      ('NEW_RECIPE.INSTRUCTIONS.ADD_BUTTON' | translate) }}
+    </p-button>
 
-  @if(!editing) {
-  <p-button class="normalized-button eraser" [disabled]="instructionsForm.pristine" (onClick)="resetForm()">
-    <i class="pi pi-eraser"></i>
-  </p-button>
-  }
-  @else {
-  <p-button class="normalized-button eraser" (onClick)="cancelEditing()">
-    Cancel
-  </p-button>
-  }
-</form>
+    @if(!editing) {
+    <p-button class="normalized-button eraser" [disabled]="instructionsForm.pristine" (onClick)="resetForm()">
+      <i class="pi pi-eraser"></i>
+    </p-button>
+    }
+    @else {
+    <p-button class="normalized-button eraser" (onClick)="cancelEditing()">
+      {{ 'NEW_RECIPE.INSTRUCTIONS.CANCEL_BUTTON' | translate }}
+    </p-button>
+    }
+  </form>

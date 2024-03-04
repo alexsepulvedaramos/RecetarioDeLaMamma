@@ -9,6 +9,8 @@ import { Recipe } from '../../interfaces/recipe';
 export class RecipeCardComponent implements OnInit {
   @Input() recipe!: Recipe;
 
+  public imageLoaded = false;
+
   ngOnInit(): void {
     if (!this.recipe) throw Error('Recipe property is required!');
   }
@@ -20,6 +22,7 @@ export class RecipeCardComponent implements OnInit {
       }
     }
 
-    return '';
+    this.imageLoaded = true;
+    return '../../../../assets/placeholder.png';
   }
 }

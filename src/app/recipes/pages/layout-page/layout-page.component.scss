@@ -25,6 +25,15 @@
     border-radius: 10px !important;
   }
 
+  // Styles for the language dropdown
+  .p-dropdown-trigger {
+    display: none;
+  }
+
+  .p-dropdown-label.p-inputtext {
+    padding: 0.3rem;
+  }
+
   @media only screen and (max-width: 768px) {
     .p-toolbar-group-start {
       width: 10%;

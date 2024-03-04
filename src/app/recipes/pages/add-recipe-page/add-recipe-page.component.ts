@@ -7,6 +7,7 @@ import { UserInfo } from '../../interfaces/user';
 
 import { FirestoreService } from '../../services/firestore.service';
 import { ImageStorageService } from '../../services/image-storage.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-add-recipe',
@@ -31,6 +32,7 @@ export class AddRecipePageComponent implements OnInit, OnDestroy {
     }),
     minutes: new FormControl<number | undefined>(undefined),
     portions: new FormControl<number | undefined>(undefined),
+    language: new FormControl<'ES' | 'EN'>(this.translateService.currentLang.toLocaleUpperCase() as 'ES' | 'EN'),
     author: new FormControl<UserInfo>(
       {
         name: 'Alejandro Sepúlveda',
@@ -52,6 +54,7 @@ export class AddRecipePageComponent implements OnInit, OnDestroy {
     private router: Router,
     private firestoreService: FirestoreService,
     private imageStorageService: ImageStorageService,
+    private translateService: TranslateService
   ) {
   }
 
@@ -89,20 +92,31 @@ export class AddRecipePageComponent implements OnInit, OnDestroy {
   saveRecipe() {
     if (this.recipeForm.valid) {
 
-      this.imageStorageService.uploadImageFiles().subscribe(serverImages => {
-        if (serverImages.length > 0) {
-          this.recipeForm.patchValue({
-            images: serverImages
-          });
+      this.imageStorageService.uploadImageFiles().subscribe({
+        next: serverImages => {
+          if (serverImages.length > 0) {
+            this.recipeForm.patchValue({
+              images: serverImages
+            });
+          }
+
+          this.firestoreService.addRecipe(this.currentRecipe)
+            .subscribe(recipe => {
+              localStorage.setItem('recipeAdded', 'true');
+
+              this.router.navigate(['recipes/', recipe.id]);
+              console.log('Successfully added')
+            })
+        },
+        error: () => {
+          this.firestoreService.addRecipe(this.currentRecipe)
+            .subscribe(recipe => {
+              localStorage.setItem('recipeAdded', 'true');
+
+              this.router.navigate(['recipes/', recipe.id]);
+              console.log('Successfully added')
+            })
         }
-
-        this.firestoreService.addRecipe(this.currentRecipe)
-          .subscribe(recipe => {
-            this.router.navigate(['recipes/', recipe.id]);
-            console.log('Successfully added')
-          })
-
-        console.log(this.currentRecipe);
       });
 
     } else {

@@ -13,10 +13,8 @@ export enum MESUREMENT_UNITS {
   Units = 'Units (unit)',
   Pieces = 'Pieces (pc)',
   Pinches = 'Pinches (pinch)',
-  Zests = 'Zests (zest)',
   Leaves = 'Leaves (leaves)',
   Slices = 'Slices (slices)',
-  Stalks = 'Stalks (stalks)',
   Cloves = 'Cloves (cloves)',
   Drops = 'Drops (drops)'
 }
