@@ -42,24 +42,24 @@ export class AddIngredientsComponent {
   public selectedIcon: string | undefined = undefined;
 
   public mesurementUnits: dropdownOption[] = [
-    { label: this.translateService.instant('MESUREMENT_UNITS.GRAMS'), value: MESUREMENT_UNITS.Grams },
-    { label: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS'), value: MESUREMENT_UNITS.Kilograms },
-    { label: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS'), value: MESUREMENT_UNITS.Milligrams },
-    { label: this.translateService.instant('MESUREMENT_UNITS.LITERS'), value: MESUREMENT_UNITS.Liters },
-    { label: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS'), value: MESUREMENT_UNITS.Milliliters },
-    { label: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS'), value: MESUREMENT_UNITS.Centiliters },
-    { label: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS'), value: MESUREMENT_UNITS.Teaspoons },
-    { label: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS'), value: MESUREMENT_UNITS.Tablespoons },
-    { label: this.translateService.instant('MESUREMENT_UNITS.CUPS'), value: MESUREMENT_UNITS.Cups },
-    { label: this.translateService.instant('MESUREMENT_UNITS.OUNCES'), value: MESUREMENT_UNITS.Ounces },
-    { label: this.translateService.instant('MESUREMENT_UNITS.POUNDS'), value: MESUREMENT_UNITS.Pounds },
-    { label: this.translateService.instant('MESUREMENT_UNITS.UNITS'), value: MESUREMENT_UNITS.Units },
-    { label: this.translateService.instant('MESUREMENT_UNITS.PIECES'), value: MESUREMENT_UNITS.Pieces },
-    { label: this.translateService.instant('MESUREMENT_UNITS.PINCHES'), value: MESUREMENT_UNITS.Pinches },
-    { label: this.translateService.instant('MESUREMENT_UNITS.LEAVES'), value: MESUREMENT_UNITS.Leaves },
-    { label: this.translateService.instant('MESUREMENT_UNITS.SLICES'), value: MESUREMENT_UNITS.Slices },
-    { label: this.translateService.instant('MESUREMENT_UNITS.CLOVES'), value: MESUREMENT_UNITS.Cloves },
-    { label: this.translateService.instant('MESUREMENT_UNITS.DROPS'), value: MESUREMENT_UNITS.Drops }
+    { label: this.translateService.instant('MESUREMENT_UNITS.GRAMS'), value: this.translateService.instant('MESUREMENT_UNITS.GRAMS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS'), value: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS'), value: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.LITERS'), value: this.translateService.instant('MESUREMENT_UNITS.LITERS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS'), value: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS'), value: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS'), value: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS'), value: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.CUPS'), value: this.translateService.instant('MESUREMENT_UNITS.CUPS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.OUNCES'), value: this.translateService.instant('MESUREMENT_UNITS.OUNCES') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.POUNDS'), value: this.translateService.instant('MESUREMENT_UNITS.POUNDS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.UNITS'), value: this.translateService.instant('MESUREMENT_UNITS.UNITS') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.PIECES'), value: this.translateService.instant('MESUREMENT_UNITS.PIECES') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.PINCHES'), value: this.translateService.instant('MESUREMENT_UNITS.PINCHES') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.LEAVES'), value: this.translateService.instant('MESUREMENT_UNITS.LEAVES') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.SLICES'), value: this.translateService.instant('MESUREMENT_UNITS.SLICES') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.CLOVES'), value: this.translateService.instant('MESUREMENT_UNITS.CLOVES') },
+    { label: this.translateService.instant('MESUREMENT_UNITS.DROPS'), value: this.translateService.instant('MESUREMENT_UNITS.DROPS') }
   ];
 
   constructor(
@@ -69,24 +69,24 @@ export class AddIngredientsComponent {
   ) {
     this.translateService.onLangChange.subscribe(() => {
       this.mesurementUnits = [
-        { label: this.translateService.instant('MESUREMENT_UNITS.GRAMS'), value: MESUREMENT_UNITS.Grams },
-        { label: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS'), value: MESUREMENT_UNITS.Kilograms },
-        { label: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS'), value: MESUREMENT_UNITS.Milligrams },
-        { label: this.translateService.instant('MESUREMENT_UNITS.LITERS'), value: MESUREMENT_UNITS.Liters },
-        { label: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS'), value: MESUREMENT_UNITS.Milliliters },
-        { label: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS'), value: MESUREMENT_UNITS.Centiliters },
-        { label: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS'), value: MESUREMENT_UNITS.Teaspoons },
-        { label: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS'), value: MESUREMENT_UNITS.Tablespoons },
-        { label: this.translateService.instant('MESUREMENT_UNITS.CUPS'), value: MESUREMENT_UNITS.Cups },
-        { label: this.translateService.instant('MESUREMENT_UNITS.OUNCES'), value: MESUREMENT_UNITS.Ounces },
-        { label: this.translateService.instant('MESUREMENT_UNITS.POUNDS'), value: MESUREMENT_UNITS.Pounds },
-        { label: this.translateService.instant('MESUREMENT_UNITS.UNITS'), value: MESUREMENT_UNITS.Units },
-        { label: this.translateService.instant('MESUREMENT_UNITS.PIECES'), value: MESUREMENT_UNITS.Pieces },
-        { label: this.translateService.instant('MESUREMENT_UNITS.PINCHES'), value: MESUREMENT_UNITS.Pinches },
-        { label: this.translateService.instant('MESUREMENT_UNITS.LEAVES'), value: MESUREMENT_UNITS.Leaves },
-        { label: this.translateService.instant('MESUREMENT_UNITS.SLICES'), value: MESUREMENT_UNITS.Slices },
-        { label: this.translateService.instant('MESUREMENT_UNITS.CLOVES'), value: MESUREMENT_UNITS.Cloves },
-        { label: this.translateService.instant('MESUREMENT_UNITS.DROPS'), value: MESUREMENT_UNITS.Drops }
+        { label: this.translateService.instant('MESUREMENT_UNITS.GRAMS'), value: this.translateService.instant('MESUREMENT_UNITS.GRAMS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS'), value: this.translateService.instant('MESUREMENT_UNITS.KILOGRAMS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS'), value: this.translateService.instant('MESUREMENT_UNITS.MILLIGRAMS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.LITERS'), value: this.translateService.instant('MESUREMENT_UNITS.LITERS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS'), value: this.translateService.instant('MESUREMENT_UNITS.MILLILITERS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS'), value: this.translateService.instant('MESUREMENT_UNITS.CENTILITERS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS'), value: this.translateService.instant('MESUREMENT_UNITS.TEASPOONS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS'), value: this.translateService.instant('MESUREMENT_UNITS.TABLESPOONS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.CUPS'), value: this.translateService.instant('MESUREMENT_UNITS.CUPS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.OUNCES'), value: this.translateService.instant('MESUREMENT_UNITS.OUNCES') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.POUNDS'), value: this.translateService.instant('MESUREMENT_UNITS.POUNDS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.UNITS'), value: this.translateService.instant('MESUREMENT_UNITS.UNITS') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.PIECES'), value: this.translateService.instant('MESUREMENT_UNITS.PIECES') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.PINCHES'), value: this.translateService.instant('MESUREMENT_UNITS.PINCHES') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.LEAVES'), value: this.translateService.instant('MESUREMENT_UNITS.LEAVES') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.SLICES'), value: this.translateService.instant('MESUREMENT_UNITS.SLICES') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.CLOVES'), value: this.translateService.instant('MESUREMENT_UNITS.CLOVES') },
+        { label: this.translateService.instant('MESUREMENT_UNITS.DROPS'), value: this.translateService.instant('MESUREMENT_UNITS.DROPS') }
       ];
 
       this.ingredientIcons = this.updateIngredientIcon();
@@ -101,6 +101,12 @@ export class AddIngredientsComponent {
   }
 
   get currentIngredient(): Ingredient {
+    // debugger;
+    // const unitValue = this.ingredientForm.get('unit')?.value.toString() || '';
+    // const unitKey = this.mesurementUnits.find(unit => unit.value === unitValue)?.label || '';
+    // const unitTranslated = this.translateService.instant(unitKey);
+
+    // this.ingredientForm.patchValue({ unit: unitTranslated });
     const ingredient = this.ingredientForm.value as Ingredient;
     return ingredient;
   }
