@@ -22,7 +22,8 @@ export class LayoutPageComponent {
 
   public languages: dropdownOption[] = [
     { label: '../../../../assets/en.svg', value: 'en' },
-    { label: '../../../../assets/es.svg', value: 'es' }
+    { label: '../../../../assets/es.svg', value: 'es' },
+    { label: '../../../../assets/de.svg', value: 'de' },
   ];
 
   public selectedLanguage: string = this.languages[0].label;
@@ -41,7 +42,13 @@ export class LayoutPageComponent {
     this.translateService.onLangChange.subscribe(() => {
       currentLang = this.translateService.currentLang;
       currentLangIndex = this.languages.findIndex(lang => lang.value === currentLang);
-      this.selectedLanguage = this.languages[currentLangIndex].label;
+
+      if (currentLangIndex !== -1) {
+        this.selectedLanguage = this.languages[currentLangIndex].label;
+      }
+      else {
+        this.selectedLanguage = this.languages[0].label;
+      }
 
       this.sidebarItems = [
         { label: this.translateService.instant('SIDE_MENU.SEARCH'), icon: 'pi pi-search mr-3', url: './list' },
@@ -49,7 +56,11 @@ export class LayoutPageComponent {
       ];
     });
 
-    this.selectedLanguage = this.languages[currentLangIndex].label;
+    if (currentLangIndex !== -1) {
+      this.selectedLanguage = this.languages[currentLangIndex].label;
+    } else {
+      this.selectedLanguage = this.languages[0].label;
+    }
   }
 
   closeCallback(e: Event): void {
@@ -61,6 +72,8 @@ export class LayoutPageComponent {
   changeLanguage(event: any): void {
     if (event.value.includes('en')) {
       this.translateService.use('en');
+    } else if (event.value.includes('de')) {
+      this.translateService.use('de');
     } else {
       this.translateService.use('es');
     }

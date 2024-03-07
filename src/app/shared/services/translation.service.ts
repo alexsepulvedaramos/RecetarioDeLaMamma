@@ -12,11 +12,11 @@ export class TranslationService {
   ) { }
 
   initializeTranslation() {
-    this.translateService.addLangs(['en', 'es']);
+    this.translateService.addLangs(['en', 'es', 'de']);
     this.translateService.setDefaultLang('en');
 
     const browserLang = this.translateService.getBrowserLang() || 'en';
-    this.translateService.use(browserLang.match(/en|es/) ? browserLang : 'en');
+    this.translateService.use(browserLang.match(/en|es|de/) ? browserLang : 'en');
 
     // Optionally, set translations for PrimeNG components here
     this.translateService.get('primeng').subscribe(res => this.config.setTranslation(res));

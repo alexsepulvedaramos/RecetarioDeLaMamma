@@ -101,12 +101,6 @@ export class AddIngredientsComponent {
   }
 
   get currentIngredient(): Ingredient {
-    // debugger;
-    // const unitValue = this.ingredientForm.get('unit')?.value.toString() || '';
-    // const unitKey = this.mesurementUnits.find(unit => unit.value === unitValue)?.label || '';
-    // const unitTranslated = this.translateService.instant(unitKey);
-
-    // this.ingredientForm.patchValue({ unit: unitTranslated });
     const ingredient = this.ingredientForm.value as Ingredient;
     return ingredient;
   }
