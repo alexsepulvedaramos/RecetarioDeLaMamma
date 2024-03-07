@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "recetasdelamama",
+    "site": "mumsrecipes",
     "public": "public",
     "rewrites": [
       {
